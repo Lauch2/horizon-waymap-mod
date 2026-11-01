@@ -1,0 +1,31 @@
+# Registry entry draft for horizon-rust/horizon-mods
+# Upload waymap-0.1.0.hnmod via https://playhorizon.dev/mods/submit — the form
+# fills sha256 itself; this file is the human-readable draft of the entry.
+
+id = "waymap"
+kind = "native-mod"
+name = "Waymap"
+summary = "Waypoints in the world and on the minimap, managed in-game with /wp."
+description = """
+Native waypoint mod for Horizon: 3D world markers projected from the camera,
+colored dots on the minimap, a six-point HUD list and an edit panel (M). No
+WebAssembly — pure Rust built into the game by the launcher.
+
+- /wp add|del|list|rename|color|clear|edit|help
+- Persistence in horizon-mods/.horizon-mod-data/waymap/waypoints.txt
+- Options > Mods > Waymap
+
+Known architecture limits: no fullscreen/inventory UI (HUD overlays only), no
+tab completion for native commands, markers hidden while the chat screen is open.
+"""
+authors = ["Lauch2"]
+license = "MIT"
+source = "https://github.com/Lauch2/horizon-waymap-mod"
+
+[[versions]]
+version = "0.1.0"
+published = "2026-11-01"
+game = "26.3"
+file = "waymap-0.1.0.hnmod"
+sha256 = "32a01b41092c67f5af5699711b64478b873b70384a2e8c9e1b3eaea1af74b5e3"
+changelog = "First release: world markers, minimap dots, waypoint list, edit panel, /wp commands."

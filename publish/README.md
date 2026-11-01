@@ -32,18 +32,18 @@ Eine **native Mod** (`.hnmod`) für Horizon, die Wegpunkte (Waypoints) in der We
 | **Hooks (NATIVE_HOOK_API)** | `2` |
 | **Injektionen** | `9` HEAD + 2 Module (`waymap` in `game.rs`, `waymap_minimap` in `extras_hud.rs`) |
 | **Quellcode-Zeilen** | `waymap.rs`: ~820 Zeilen |
-| **Bundle-Größe** | `waymap.hnmod`: 13 Einträge, ~37 KB |
+| **Bundle-Größe** | `waymap-0.1.0.hnmod`: 13 Einträge, ~37 KB |
 
 ## Projekt-Struktur (unter `/home/aron/horizon-waymap/`)
 
 ```
 horizon-waymap/
-├── waymap.hnmod              # Paket (zip -qrD, 13 Einträge, ohne Verzeichnisse)
+├── waymap-0.1.0.hnmod              # Paket (zip -qrD, 13 Einträge, ohne Verzeichnisse)
 ├── horizon-native.json      # Manifest (id, version, horizon, mixins, schema)
 ├── check.sh                 # Build-Check: apply + cargo check
 ├── package.sh               # Paketierung (zip -qrD)
 ├── README.md                # Diese Datei (deutsch)
-├── .gitignore               # build/, waymap.hnmod
+├── .gitignore               # build/, waymap-0.1.0.hnmod
 ├── mixins/
 │   └── waymap/
 │       ├── horizon-mixin.toml  # 9 Injektionen + 2 Module
@@ -97,7 +97,7 @@ git clone https://github.com/horizon-rust/horizon-mixins.git
 ```
 
 ### Schritt 2: Bundle-Paket
-- `waymap.hnmod` muss < 64 MiB sein (`horizon-mods/src/index/native.rs`: `MAX_FILE`)
+- `waymap-0.1.0.hnmod` muss < 64 MiB sein (`horizon-mods/src/index/native.rs`: `MAX_FILE`)
 - Keine Verzeichnis-Einträge (`zip -qrD`)
 - 13 Einträge — passt
 - Keine `.DS_Store` (`-x '*.DS_Store'`)
