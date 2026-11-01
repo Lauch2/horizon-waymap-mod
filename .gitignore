@@ -1,3 +1,14 @@
+# Build artifacts (check.sh stage/target, package.py output)
 build/
 target/
+
+# Python (tools/package.py)
+__pycache__/
+*.pyc
+
+# macOS junk
 *.DS_Store
+
+# NOTE: waymap-0.1.0.hnmod at the repo root is intentionally TRACKED —
+# it is the release bundle referenced by publish/waymap.toml (SHA-256 pinned).
+# Only the regenerated copy under target/ is ignored.
