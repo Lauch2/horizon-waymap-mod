@@ -19,6 +19,7 @@ Known architecture limits: no fullscreen/inventory UI (HUD overlays only), no
 tab completion for native commands, markers hidden while the chat screen is open.
 """
 authors = ["Lauch2"]
+owners = ["Lauch2"]
 license = "MIT"
 source = "https://github.com/Lauch2/horizon-waymap-mod"
 
