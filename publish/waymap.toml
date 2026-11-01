@@ -20,6 +20,7 @@ tab completion for native commands, markers hidden while the chat screen is open
 """
 authors = ["Lauch2"]
 owners = ["Lauch2"]
+key = "RWQy5wboGmp8e4yZJkKSwwuos+FUyHt948nJvU5GroOhUOMxj/8Qik2f"
 license = "MIT"
 source = "https://github.com/Lauch2/horizon-waymap-mod"
 
@@ -29,4 +30,10 @@ published = "2026-11-01"
 game = "26.3"
 file = "waymap-0.1.0.hnmod"
 sha256 = "fba24123c7cce9c82c61b39577de6619e9ff069bcd2b5b51110bb7327b128406"
+signature = """
+untrusted comment: signature from minisign secret key
+RUQy5wboGmp8e3sFCBDlAKoku4tmZYLe1sbFkpt1aRJgkd7Nnp2p30PCWyjqQy4LjvaEKd+FsQI8A00e93mA01Crh/OZpKGZWws=
+trusted comment: Waymap 0.1.0 by Lauch2
+4Z1vI6ISEJbTHu1dEF8+x0Y3g3tvx5nZSzWpM9vD5JhHEr+Zfd1mIWgSrZm8gtpeii4CHXAHYJtG8Lyj9EYUAA==
+"""
 changelog = "First release: world markers, minimap dots, waypoint list, edit panel, /wp commands."
