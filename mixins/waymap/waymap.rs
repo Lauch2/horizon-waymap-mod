@@ -291,7 +291,7 @@ pub(super) fn settings(game: &mut Game<'_>, mod_id: &str, buttons: &mut Vec<Stri
     buttons.push(format!("Markers: {}", on_off(markers)));
     buttons.push(format!("Labels: {}", on_off(labels)));
     buttons.push(format!("List panel: {}", on_off(panel)));
-    buttons.push(format!("Edit panel (M): {}", on_off(edit_panel)));
+    buttons.push(format!("Edit panel (M): {}", on_off(with(|s| s.edit_panel))));
 }
 
 
@@ -817,7 +817,7 @@ fn draw_world_markers(game: &Game<'_>, batch: &mut HudBatch, dim: &str, labels: 
             Some(at) if at[0] >= 0.0 && at[0] <= w && at[1] >= 0.0 && at[1] <= h => (at, true),
             _ => (cam.edge(wp), false),
         };
-        dot(batch, atlas, at, wp.color, if on_screen { 3.0 } else { 2.5 });
+        dot(batch, &game.gui.atlas, at, wp.color, if on_screen { 3.0 } else { 2.5 });
         if !labels {
             continue;
         }

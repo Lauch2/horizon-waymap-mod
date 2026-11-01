@@ -1,25 +1,14 @@
-# Registry entry draft for horizon-rust/horizon-mods
-# Upload waymap-0.1.0.hnmod via https://playhorizon.dev/mods/submit — the form
-# fills sha256 itself; this file is the human-readable draft of the entry.
-
 id = "waymap"
 kind = "native-mod"
 name = "Waymap"
 summary = "Waypoints in the world and on the minimap, managed in-game with /wp."
-description = """
-Native waypoint mod for Horizon: 3D world markers projected from the camera,
-colored dots on the minimap, a six-point HUD list and an edit panel (M). No
-WebAssembly — pure Rust built into the game by the launcher.
-
-- /wp add|del|list|rename|color|clear|edit|help
-- Persistence in horizon-mods/.horizon-mod-data/waymap/waypoints.txt
-- Options > Mods > Waymap
-
-Known architecture limits: no fullscreen/inventory UI (HUD overlays only), no
-tab completion for native commands, markers hidden while the chat screen is open.
-"""
-authors = ["Lauch2"]
-owners = ["Lauch2"]
+description = "Native waypoint mod for Horizon: 3D world markers projected from the camera,\ncolored dots on the minimap, a six-point HUD list and an edit panel (M). No\nWebAssembly — pure Rust built into the game by the launcher.\n\n- /wp add|del|list|rename|color|clear|edit|help\n- Persistence in horizon-mods/.horizon-mod-data/waymap/waypoints.txt\n- Options > Mods > Waymap\n\nKnown architecture limits: no fullscreen/inventory UI (HUD overlays only), no\ntab completion for native commands, markers hidden while the chat screen is open.\n"
+authors = [
+    "Lauch2",
+]
+owners = [
+    "Lauch2",
+]
 key = "RWQy5wboGmp8e4yZJkKSwwuos+FUyHt948nJvU5GroOhUOMxj/8Qik2f"
 license = "MIT"
 source = "https://github.com/Lauch2/horizon-waymap-mod"
@@ -29,11 +18,6 @@ version = "0.1.0"
 published = "2026-11-01"
 game = "26.3"
 file = "waymap-0.1.0.hnmod"
-sha256 = "fba24123c7cce9c82c61b39577de6619e9ff069bcd2b5b51110bb7327b128406"
-signature = """
-untrusted comment: signature from minisign secret key
-RUQy5wboGmp8e3sFCBDlAKoku4tmZYLe1sbFkpt1aRJgkd7Nnp2p30PCWyjqQy4LjvaEKd+FsQI8A00e93mA01Crh/OZpKGZWws=
-trusted comment: Waymap 0.1.0 by Lauch2
-4Z1vI6ISEJbTHu1dEF8+x0Y3g3tvx5nZSzWpM9vD5JhHEr+Zfd1mIWgSrZm8gtpeii4CHXAHYJtG8Lyj9EYUAA==
-"""
+sha256 = "e019a74f541a28b8535f5ff736494dae8148e6acf13467ba006d3afe5b752bf1"
+signature = "untrusted comment: signature from minisign secret key\nRUQy5wboGmp8e3sFCBDlAKoku4tmZYLe1sbFkpt1aRJgkd7Nnp2p30PCWyjqQy4LjvaEKd+FsQI8A00e93mA01Crh/OZpKGZWws=\ntrusted comment: Waymap 0.1.0 by Lauch2\n4Z1vI6ISEJbTHu1dEF8+x0Y3g3tvx5nZSzWpM9vD5JhHEr+Zfd1mIWgSrZm8gtpeii4CHXAHYJtG8Lyj9EYUAA==\n"
 changelog = "First release: world markers, minimap dots, waypoint list, edit panel, /wp commands."
