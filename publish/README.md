@@ -134,7 +134,7 @@ $ time ./check.sh
 - [ ] `edit_panel` State: Default-Initialisierung muss korrekt sein (noch Fehler im generierten Code — siehe `build/stage/crates/horizon-client/src/game.rs:15989`)
 - [ ] Keine Tests (`fixtures/` fehlt)
 - [ ] Keine `README.md` im `mixins/waymap/` (nur im Projekt-Root)
-- [ ] `horizon-native.json`: Soll `hooks: 2` enthalten (für Mods, die Hooks nutzen)
+- [ ] `horizon-native.json`: Soll `hooks: 1` enthalten (NATIVE_HOOKS_API-Level)
 
 ## Warum diese Mod ins Repo passt
 

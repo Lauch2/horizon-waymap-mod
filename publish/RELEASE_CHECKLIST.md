@@ -24,7 +24,7 @@
 - [x] `waymap.hnmod` (13 Einträge, <64MiB)
 - [x] `zip -qrD` (keine Verzeichnis-Einträge)
 - [x] Kein `.DS_Store`
-- [x] `horizon-native.json`: `hooks: 2` hinzugefügt
+- [x] `horizon-native.json`: `hooks: 1` hinzugefügt
 
 ### Kompatibilität
 - [x] `mixins`-Revision: `0d6b103...` (passt zu fps/minimap/recipes/zoom)
@@ -37,7 +37,7 @@
 
 ## Bekannte Limite (für PR-Beschreibung)
 
-> This native mod uses all available native hooks (`native_frame`, `native_hud`, `native_key`, `native_command`, `native_mods`, `native_settings`, `native_panel_items`). It cannot provide:
+> This native mod uses all available native hooks (`native_frame`, `native_hud`, `native_key`, `native_command`, `native_mods`, `native_settings`). It cannot provide:
 > - Fullscreen UI (no `Screen` enum extension possible)
 > - Command tab-completion (no `native_commands` hook points)
 > - Chat-visible markers when Chat screen is open (`draw_extras` stops drawing HUD)
