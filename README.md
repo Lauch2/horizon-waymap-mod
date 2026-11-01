@@ -65,13 +65,6 @@ waymap-0.1.0.hnmod        # Ready-to-install bundle
 - **Markers hidden while chat is open** — `draw_extras` stops drawing the HUD when `Screen::Chat` is active.
 - **Panel closure** — `draw_extras` has a closure, so `AFTER_ASSIGN`/`OVERWRITE` injections fail; the edit panel uses a cancellable head on `draw_minimap` instead.
 
-## Submit
-
-This is the source for the `.hnmod` bundle. For the official registry (`horizon-rust/horizon-mods`):
-
-- Bundle: `waymap-0.1.0.hnmod` (SHA-256 pinned by the registry).
-- Source PR: fork `horizon-rust/horizon-mixins`, add `mixins/waymap/` + `fixtures/` + this README, describe the architecture limits above.
-
 ## License
 
 MIT — see the `horizon-mixins` workspace.
