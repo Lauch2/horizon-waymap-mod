@@ -1,24 +1,24 @@
-# Waymap — Was du wissen musst
+# Waymap — What You Need to Know
 
-## Schnelle Antwort auf deine Fragen
+## Quick Answers to Your Questions
 
-**Q: Warum sind meine /wp-Befehle rot / nicht erkannt?**
-A: Native Mods registrieren Befehle nicht im Chat-Dispatcher. Der Befehl funktioniert (`/wp add` usw.), aber die Autovervollständigung kennt ihn nicht. Das gilt für ALLE native Mods (fps, minimap, zoom, etc.).
+**Q: Why are my `/wp` commands shown in red / not recognized?**
+A: Native mods don't register commands in the chat dispatcher. The command works (`/wp add` etc.), but autocomplete doesn't know about it. This applies to ALL native mods (fps, minimap, zoom, etc.).
 
-**Q: Warum sind Wegpunkte unsichtbar wenn Chat offen?**
-A: `native_hud` wird von `draw_extras` aufgerufen — wenn Chat offen ist, zeichnet das Spiel den HUD nicht. Das ist Horizon-Verhalten, nicht ein Fehler der Mod.
+**Q: Why are waypoints invisible when chat is open?**
+A: `native_hud` is called from `draw_extras` — when chat is open, the game doesn't draw the HUD. This is Horizon behavior, not a mod bug.
 
-**Q: Kann ich ein echtes Inventar/Fullscreen-Menü erstellen?**
-A: Nein. Native Mods können nur HUD-Overlays (`corners.place`) zeichnen. Kein `Screen`-Enum-Extension, kein Inventar-Access, kein echtes Fullscreen-UI.
+**Q: Can I create a real inventory/fullscreen menu?**
+A: No. Native mods can only draw HUD overlays (`corners.place`). No `Screen` enum extension, no inventory access, no real fullscreen UI.
 
-**Q: Wie verwalte ich Wegpunkte?**
-A: `N` = hinzufügen, `B` = Liste unten links, `M` = Edit-Panel (HUD), `/wp edit <Name>` = Info, Settings-Button = Toggle.
+**Q: How do I manage waypoints?**
+A: `N` = add, `B` = toggle list panel, `/wp edit <name>` = info, Settings button = toggle.
 
-**Q: Wie geht es ins offizielle Repo?**
-A: Fork `horizon-rust/horizon-mixins`, `mixins/waymap/` + tests + README + PR. 2 kleine Fehler fixen (`atlas`, `edit_panel`).
+**Q: How do I get it into the official repo?**
+A: Fork `horizon-rust/horizon-mixins`, add `mixins/waymap/` + tests + README + PR. Fix 2 small issues (`atlas`, `edit_panel`).
 
-## Dateien im Publish-Ordner
-- `README.md` — Alles zur Mod (Features, Installation, Limits)
-- `RELEASE_CHECKLIST.md` — Was noch fehlt für Repo-Veröffentlichung
-- `build/` — Build-Artefakte (nicht für Repo, nur lokal)
-- `waymap.hnmod` — Fertiges Paket (bereit zur Installation)
+## Files in Publish Folder
+- `README.md` — Everything about the mod (features, installation, limits)
+- `RELEASE_CHECKLIST.md` — What's missing for official repo submission
+- `build/` — Build artifacts (not for repo, local only)
+- `waymap.hnmod` — Ready-to-install package

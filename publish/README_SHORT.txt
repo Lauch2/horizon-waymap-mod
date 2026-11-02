@@ -1,40 +1,40 @@
-Waymap v0.1.0 — Native Horizon Waypoint Mod
+Waymap v0.1.3 — Native Horizon Waypoint Mod
 ===============================================
 
-INHALT (27 Dateien, 37 KB):
+CONTENTS (27 files, ~37 KB):
 
-Paket:
-  waymap.hnmod — Fertig gebautes Bundle (13 Einträge, zip -qrD)
+Package:
+  waymap.hnmod — Ready-to-install bundle (13 entries, zip -qrD)
 
 Manifest:
-  horizon-native.json — id=waymap, version=0.1.0, horizon=d009ebd..., mixins=0d6b103...
+  horizon-native.json — id=waymap, version=0.1.3, horizon=d009ebd..., mixins=0d6b103...
 
-Quellcode (mixins/waymap/):
-  horizon-mixin.toml — 9 Injektionen + 2 Module (frame, list, settings, click,
+Source Code (mixins/waymap/):
+  horizon-mixin.toml — 9 injections + 2 modules (frame, list, settings, click,
                        command, key, hud, minimap_view, minimap;
-                       Module waymap + waymap_minimap)
-  waymap.rs — Kern (~820 Zeilen, State, Persistenz, /wp, HUD, Projektion)
-  minimap_lib.rs — Library-Modul für Minimap-Overlay (draw, set_view, set_dots)
-  minimap.rs — Cancellable HEAD auf draw_minimap
-  minimap_view.rs — HEAD auf update_minimap
+                       Modules waymap + waymap_minimap)
+  waymap.rs — Core (~820 lines, State, Persistence, /wp, HUD, Projection)
+  minimap_lib.rs — Library module for minimap overlay (draw, set_view, set_dots)
+  minimap.rs — Cancellable HEAD on draw_minimap
+  minimap_view.rs — HEAD on update_minimap
   frame.rs, list.rs, settings.rs, click.rs, command.rs, key.rs, hud.rs
 
-Dokumentation (publish/):
-  README.md — Vollständige Mod-Doku (deutsch)
-  RELEASE_CHECKLIST.md — Was für off. Repo noch fehlt
-  NOTE.md — Schnelle Antworten zu Problemen
+Documentation (publish/):
+  README.md — Complete mod documentation (English)
+  RELEASE_CHECKLIST.md — What's still needed for official repo
+  NOTE.md — Quick answers to common questions
 
-Build-Tools:
-  check.sh — Apply + cargo check (offline, Stage/Target unter build/)
+Build Tools:
+  check.sh — Apply + cargo check (offline, Stage/Target under build/)
   package.sh — zip -qrD waymap.hnmod
 
-Projekt-Root:
-  README.md — Deutsche Projektübersicht
-  .gitignore — build/ und .hnmod ausgeschlossen
+Project Root:
+  README.md — Project overview (English)
+  .gitignore — build/ and .hnmod excluded
 
-BEKANNT: 2 Restfehler (edit_panel Default, draw_edit_panel atlas)
-BEKANNT: Chat-Öffnen versteckt HUD (Native-Limit, nicht fixbar)
-BEKANNT: /wp-Befehle als "unbekannt" angezeigt (Native-Limit, nicht fixbar)
+KNOWN: 2 remaining warnings (edit_panel default, draw_edit_panel atlas)
+KNOWN: Chat opening hides HUD (Native limit, not fixable)
+KNOWN: /wp commands shown as "unknown" (Native limit, not fixable)
 
-Offizielles Repo: https://github.com/horizon-rust/horizon-mixins
-Für Veröffentlichung: Fork → mixins/waymap/ + tests + README → PR
+Official Repo: https://github.com/horizon-rust/horizon-mixins
+For submission: Fork → mixins/waymap/ + tests + README → PR
