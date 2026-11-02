@@ -1,0 +1,3 @@
+# Build-Stage und Cargo-Target bleiben im Projektordner.
+/build/
+/waymap.hnmod
