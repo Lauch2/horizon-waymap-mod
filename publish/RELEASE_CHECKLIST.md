@@ -1,46 +1,44 @@
-# Waymap — Release-Checkliste für offizielles Repo
+# Waymap — Registry-Einreichungscheckliste
 
-## Vor der Veröffentlichung (horizon-rust/horizon-mixins)
+## Projekt und Policy
 
-### Code-Qualität (noch offen)
-- [x] `draw_edit_panel`: `atlas` Variable bereinigt
-- [x] `draw_minimap_dots`: `MINIMAP_PIXELS` in lib behalten, aus waymap.rs entfernt
-- [x] `MINIMAP_PIXELS`: Nur in `minimap_lib.rs`
-- [x] `edit_panel` State: Default `false` gesetzt, Initialisierung korrigiert
+- [x] Eigenständiger Native-Mod-Code unter MIT (`LICENSE`)
+- [x] Keine Minecraft-/Mojang-Assets oder -Daten im Bundle
+- [x] Source-Link zeigt auf das Repository mit dem Paketquellcode
+- [x] Native-Mod-Risiko (läuft mit Spielerrechten) ist dokumentiert
+- [ ] Autor/Publisher bestätigt im Submit-Formular die Horizon-Mod-Policy
 
-### Dokumentation
-- [x] Projektdoku (`publish/README.md`)
-- [x] `README.md` im Projekt-Root (deutsch)
-- [ ] `mixins/waymap/README.md` (für Repo-Doku, kurz)
-- [ ] `docs/` für Mod-Nutzer
+## Build und Bundle
 
-### Tests (fehlen komplett)
-- [ ] `fixtures/native-mods/waymap/` erstellen
-- [ ] `horizon-mixin.toml` mit Minimal-Beispiel
-- [ ] `waymap.rs` mit Grundfunktionen testen
-- [ ] `check.sh` als Test-Referenz dokumentieren
+- [x] Versions- und Hook-Metadaten liegen zentral in `compatibility.json`
+- [x] Bundle-Manifest und Kompatibilitätsrevision sind aufeinander geprüft
+- [x] Format-, Clippy-, Unit-Test- und Package-Checks bestehen
+- [x] Vollständiger Build gegen die gepinnte Horizon-Revision bestehen lassen
+- [x] Offizieller Registry-Packer erzeugt byte-identisches `.hnmod`
+- [x] Registry-Prüfung mit dem finalen, hochzuladenden `.hnmod` bestehen lassen
+- [x] Paket ist deutlich kleiner als das Registry-Limit von 64 MiB
 
-### Bundle
-- [x] `waymap.hnmod` (13 Einträge, <64MiB)
-- [x] `zip -qrD` (keine Verzeichnis-Einträge)
-- [x] Kein `.DS_Store`
-- [x] `horizon-native.json`: `hooks: 1` hinzugefügt
+## Veröffentlichung v0.1.1
 
-### Kompatibilität
-- [x] `mixins`-Revision: `0d6b103...` (passt zu fps/minimap/recipes/zoom)
-- [x] `horizon_revision`: `d009ebd...` (passt zu installierter Instanz)
-- [ ] Mit `server_lod` kompatibel? (Nein — `a2af5c` vs `0d6b103`. Dokumentiert.)
+- [ ] Finalen Build als neue Version 0.1.1 veröffentlichen; vorhandene Release-Dateien
+  nicht ersetzen
+- [ ] Hash und Minisign-Signatur der finalen Datei `waymap-0.1.1.hnmod` in den Eintrag übernehmen
+- [ ] Bei vorhandenem Registry-Schlüssel den zugehörigen privaten Schlüssel zum
+  Signieren der neuen Version verwenden
+- [ ] Über `playhorizon.dev/mods/submit` einreichen und den automatisch erzeugten
+  Registry-PR prüfen
+- [ ] Registry-CI und Review abwarten
 
-### Legal
-- [x] Lizenz: MIT (aus `horizon-mixins` Workspace)
-- [ ] Autor/Feld im Manifest? (Nicht erforderlich für `.hnmod`)
+## Veröffentlichung v0.1.0 (vorhanden)
 
-## Bekannte Limite (für PR-Beschreibung)
+- [x] Finaler Build für Version 0.1.0 bereits veröffentlicht
+- [x] Hash und Minisign-Signatur der finalen Datei `waymap-0.1.0.hnmod` im Eintrag gespeichert
+- [x] Vorhandener Registry-Schlüssel für die alte Version verwendet
 
-> This native mod uses all available native hooks (`native_frame`, `native_hud`, `native_key`, `native_command`, `native_mods`, `native_settings`). It cannot provide:
-> - Fullscreen UI (no `Screen` enum extension possible)
-> - Command tab-completion (no `native_commands` hook points)
-> - Chat-visible markers when Chat screen is open (`draw_extras` stops drawing HUD)
-> - Inventory-based GUI (only `native_hud` overlay possible)
->
-> These are Horizon native architecture limitations, not mod bugs.
+## Kompatibilität und Limits
+
+- Mindest-Hooks-API: `35` (Native-Command-Registrierung)
+- Getesteter Horizon-Stand: `c9d474dd9116e84c243f8992d75c11314df56f06`
+- Die Minimap-Erweiterung nutzt interne Funktionen; daher ist der getestete
+  Horizon-Commit fest gepinnt.
+- Das Edit-Panel ist ein HUD-Overlay; der Chat kann HUD-Inhalte überdecken.

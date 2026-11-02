@@ -1,0 +1,11 @@
+untrusted comment: signature from minisign secret key
+PLACEHOLDER_SIGNATURE_HERE
+trusted comment: Waymap 0.1.1 by Lauch2
+PLACEHOLDER_TRUSTED_COMMENT_HERE
+
+The author must sign waymap-0.1.1.hnmod with their private key and replace
+PLACEHOLDER_SIGNATURE_HERE and PLACEHOLDER_TRUSTED_COMMENT_HERE with the actual
+signature. The signature follows minisign format: a base64-encoded Ed25519
+signature with a comment line first, then a trusted comment line.
+
+To sign properly, use: minisign -s -m waymap-0.1.1.hnmod -S -x > waymap-0.1.1.hnmod.minisig

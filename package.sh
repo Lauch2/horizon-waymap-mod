@@ -3,4 +3,5 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 python3 tools/package.py
-cp target/waymap-0.1.0.hnmod waymap-0.1.0.hnmod
+VERSION=$(python3 -c 'import tomllib; print(tomllib.load(open("mixins/waymap/horizon-mixin.toml", "rb"))["mod"]["version"])')
+cp "target/waymap-$VERSION.hnmod" "waymap-$VERSION.hnmod"

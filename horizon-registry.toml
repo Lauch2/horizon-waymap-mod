@@ -1,0 +1,8 @@
+# horizon-registry.toml für das Waymap-Projekt
+# Dieses Feld füllt fehlende Felder im Registry-Eintrag aus dem Repository aus
+
+name = "Waymap"
+summary = "Waypoints in der Welt und auf der Minimap, verwaltet in-game mit /wp."
+description = "Native Waypoint-Mod für Horizon: 3D-Weltmarker, projiziert von der Kamera,\ncolorierte Punkte auf der Minimap, eine sechs-Punkt-HUD-Liste und ein Edit-Panel (M). Kein\nWebAssembly — reiner Rust-Code, eingebaut in das Spiel durch den Launcher.\n\n- /wp add|del|list|rename|color|clear|edit|help\n- Persistenz in horizon-mods/.horizon-mod-data/waymap/waypoints.txt\n- Optionen > Mods > Waymap\n\nBekannte Implementierungslimits: Das Edit-Panel ist ein HUD-Overlay, der Chat kann\nHUD-Marker überdecken, und der Minimap-Patch ist auf seinen getesteten Horizon-Commit\nfestgepinnt.\n"
+authors = ["Lauch2"]
+license = "MIT"

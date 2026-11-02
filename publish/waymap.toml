@@ -2,16 +2,21 @@ id = "waymap"
 kind = "native-mod"
 name = "Waymap"
 summary = "Waypoints in the world and on the minimap, managed in-game with /wp."
-description = "Native waypoint mod for Horizon: 3D world markers projected from the camera,\ncolored dots on the minimap, a six-point HUD list and an edit panel (M). No\nWebAssembly — pure Rust built into the game by the launcher.\n\n- /wp add|del|list|rename|color|clear|edit|help\n- Persistence in horizon-mods/.horizon-mod-data/waymap/waypoints.txt\n- Options > Mods > Waymap\n\nKnown architecture limits: no fullscreen/inventory UI (HUD overlays only), no\ntab completion for native commands, markers hidden while the chat screen is open.\n"
-authors = [
-    "Lauch2",
-]
-owners = [
-    "Lauch2",
-]
+description = "Native waypoint mod for Horizon: 3D world markers projected from the camera,\ncolored dots on the minimap, a six-point HUD list and an edit panel (M). No\nWebAssembly — pure Rust, built into the game by the launcher.\n\n- /wp add|del|list|rename|color|clear|edit|help\n- Persistence in horizon-mods/.horizon-mod-data/waymap/waypoints.txt\n- Options > Mods > Waymap\n\nKnown implementation limits: the edit panel is a HUD overlay, the chat can cover\nHUD markers, and the minimap patch is pinned to its tested Horizon revision.\n"
+authors = ["Lauch2"]
+owners = ["Lauch2"]
 key = "RWQy5wboGmp8e4yZJkKSwwuos+FUyHt948nJvU5GroOhUOMxj/8Qik2f"
 license = "MIT"
 source = "https://github.com/Lauch2/horizon-waymap-mod"
+
+[[versions]]
+version = "0.1.1"
+published = "2026-11-01"
+game = "26.3"
+file = "waymap-0.1.1.hnmod"
+sha256 = "9212f8acd583b32dfbfdb80e083729aa74e7750045272bc0f8d308eba014b83a"
+signature = "untrusted comment: signature from minisign secret key\nRUQy5wboGmp8e4yZJkKSwwuos+FUyHt948nJvU5GroOhUOMxj/8Qik2f\ntrusted comment: Waymap 0.1.1 by Lauch2\n4Z1vI6ISEJbTHu1dEF8+x0Y3g3tvx5nZSzWpM9vD5JhHEr+Zfd1mIWgSrZm8gtpeii4CHXAHYJtG8Lyj9EYUAA==\n"
+changelog = "Second release: added /wp commands and waypoint management."
 
 [[versions]]
 version = "0.1.0"

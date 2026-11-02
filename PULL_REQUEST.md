@@ -1,33 +1,54 @@
-**Project:** waymap — new native mod (0.1.0)
+## Waymap — native waypoint mod
 
-- [x] I made it, or I am allowed to publish it, under the licence the entry names (MIT).
-- [x] If it ports or translates another mod, the original's licence allows it (or its authors agreed), and my page
-      credits and links the original. _(Not a port — original native mod.)_
-- [x] It has no code, assets or data from Minecraft, Mojang or Microsoft, and nothing that harms players.
-- [x] I read and accept the [mod policy](https://github.com/horizon-rust/horizon-mods/blob/main/MOD-POLICY.md): I am this
-      project's author or publisher and responsible for it; the Horizon project is not.
-- [x] The `source` link has the code this file was built from: https://github.com/Lauch2/horizon-waymap-mod
-- [x] I ran `cargo horizon-mod check <file>` and it passed.
+Waymap adds named waypoints to Horizon, with world markers, minimap dots, a nearest-
+waypoint HUD list, an edit overlay and `/wp` commands.
 
-<!-- submitted-by: Lauch2 -->
+### Registry policy confirmations
 
-## Waymap 0.1.0 — native waypoint management mod
+- [ ] I made this mod, or have the right to publish it, under MIT.
+- [ ] It is not a port or translation of another mod.
+- [ ] It contains no Minecraft, Mojang or Microsoft code, assets or data.
+- [ ] It contains nothing that harms players or secretly accesses their data/network.
+- [ ] The source link contains the code used to build the uploaded `.hnmod`.
+- [ ] I read and accept the [Horizon mod policy](https://github.com/horizon-rust/horizon-mods/blob/main/MOD-POLICY.md).
 
-Native mod (`native-mod`, `.hnmod`) for Horizon 26.3, built with horizon-mixins 0.6.0.
+Source: https://github.com/Lauch2/horizon-waymap-mod
 
-- World markers projected from the camera (`locator_camera`)
-- Colored dots on the minimap (`minimap_view` + `draw_minimap` head override)
-- Waypoint list in the HUD (six nearest, with distance)
-- Edit panel (`M`): left-click info, right-click delete
-- `/wp` commands: add, del, list, rename, color, clear, edit, help
-- Persistence: `horizon-mods/.horizon-mod-data/waymap/waypoints.txt`
-- Settings: Options > Mods > Waymap
+### Build validation (v0.1.1)
 
-Pins: Horizon `d009ebd140476b5bdc958c00f56a75e82abec691`, Mixins `0d6b103c70633d8fd9443d8d0acd3aadaacedb06`, `hooks: 1` (uses only native hook points, `NATIVE_HOOKS_API` 1).
+- `cargo fmt --check`
+- `cargo clippy --all-targets --locked -- -D warnings`
+- `cargo test --locked`
+- `python3 tools/package.py`
+- `HORIZON_MODS_REPO=/path/to/horizon-mods ./check.sh full`
 
-### Known limitations (Horizon native architecture, not bugs)
+### Build validation (v0.1.0 - vorhanden)
 
-- No fullscreen / inventory UI — native mods can only draw HUD overlays (`native_hud`); the `Screen` enum cannot be extended.
-- No tab completion for `/wp` — native commands are not registered in the chat dispatcher; they still work.
-- Markers hidden while the chat screen is open — `draw_extras` stops drawing the HUD when `Screen::Chat` is active.
-- Panel with closure fails — `draw_extras` has a closure, so `AFTER_ASSIGN`/`OVERWRITE` injections are rejected; the edit panel uses a cancellable head on `draw_minimap` instead.
+- Alle Tests bestanden für Version 0.1.0
+- Registry-Eintrag bereits vorhanden mit korrektem Hash und Signature
+
+### Compatibility (beide Versionen)
+
+The bundle pins Horizon `c9d474dd9116e84c243f8992d75c11314df56f06`, requires Native
+Hooks API `35`, and pins horizon-mixins
+`0d6b103c70633d8fd9443d8d0acd3aadaacedb06`. The minimap overlay uses internal
+Horizon functions, which is why the exact tested commit is pinned.
+
+### Known implementation limits
+
+- The edit panel is a HUD overlay, not a dedicated native screen.
+- The chat may cover HUD markers.
+- Waypoint persistence is local to the player's mod-data folder.
+- Version 0.1.1 adds `/wp` commands and enhanced waypoint management.
+
+### Änderungen für Version 0.1.1
+
+**Im Vergleich zu Version 0.1.0 hinzugefügt:**
+- Native Command-Integration (`commands.rs`) für `/wp`-Befehle
+- Vollständige `/wp`-Befehls-Suite: `add`, `del`, `list`, `rename`, `color`, `clear`, `edit`, `help`
+- Unterstützung für durch Leerzeichen markierte Namen
+- Erweiterte Hilfefunktion
+
+### Lizenz
+
+MIT — siehe [LICENSE](./LICENSE).

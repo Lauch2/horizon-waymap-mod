@@ -1,0 +1,10 @@
+[package]
+name = "horizon-mod-waymap"
+version = "0.1.1"
+edition = "2024"
+license = "MIT"
+publish = false
+description = "Native waypoint management mod for Horizon"
+
+[lib]
+path = "unit_tests.rs"

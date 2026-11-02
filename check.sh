@@ -1,17 +1,31 @@
 #!/usr/bin/env bash
-# Applies the mixins to a pristine Horizon tree and type-checks the client.
-# Stage and Cargo target stay under build/, inside this folder.
+# Runs the source checks and, in full mode, the official Horizon native build.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-SRC=${HORIZON_SRC:-/tmp/opencode/src}
-# The launcher's horizon-mixins revision (0d6b103, its default and the one the
-# other installed mods pin), so a local check matches the launcher's build.
-MIXINS=${HORIZON_MIXINS:-/home/aron/.local/share/horizon-launcher/native/tools/0d6b103c7063/bin/horizon-mixins}
-CARGO_HOME=${CARGO_HOME:-/home/aron/.local/share/horizon-launcher/cargo}
+MODE=${1:-full}
 
-"$MIXINS" apply --workspace "$SRC" --mods mixins --out build/stage
+cargo fmt --check
+cargo clippy --all-targets --locked -- -D warnings
+cargo test --locked
+python3 tools/package.py
 
-cd build/stage
-CARGO_HOME="$CARGO_HOME" cargo check --offline \
-  -p horizon-client --features mods --target-dir ../target
+if [[ "$MODE" == "unit" ]]; then
+  exit 0
+fi
+if [[ "$MODE" != "full" ]]; then
+  echo "usage: $0 [unit|full]" >&2
+  exit 2
+fi
+
+HORIZON_MODS_REPO=${HORIZON_MODS_REPO:?set HORIZON_MODS_REPO to a horizon-mods checkout}
+WORK=$(mktemp -d "${TMPDIR:-/tmp}/waymap-native-check.XXXXXX")
+trap 'rm -rf "$WORK"' EXIT
+mkdir -p "$WORK/native/waymap"
+rsync -a --exclude=.git --exclude=target --exclude=build ./ "$WORK/native/waymap/"
+cp -a "$HORIZON_MODS_REPO/native/tools" "$WORK/native/"
+VERSION=$(python3 -c 'import tomllib; print(tomllib.load(open("mixins/waymap/horizon-mixin.toml", "rb"))["mod"]["version"])')
+python3 "$WORK/native/tools/native.py" package waymap
+cmp "target/waymap-$VERSION.hnmod" "$WORK/native/target/waymap-$VERSION.hnmod"
+python3 "$WORK/native/tools/native.py" check waymap \
+  --horizon "$(python3 -c 'import json; print(json.load(open("compatibility.json"))["horizon_revision"])')"

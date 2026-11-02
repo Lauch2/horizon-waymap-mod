@@ -1,24 +1,19 @@
-# Waymap — Was du wissen musst
+# Submission status
 
-## Schnelle Antwort auf deine Fragen
+The current registry workflow is the submit form at
+https://playhorizon.dev/mods/submit. It uploads the `.hnmod` and opens a
+pull request in `horizon-rust/horizon-mods`; a pull request to `horizon-mixins`
+is not the submission path for a native mod.
 
-**Q: Warum sind meine /wp-Befehle rot / nicht erkannt?**
-A: Native Mods registrieren Befehle nicht im Chat-Dispatcher. Der Befehl funktioniert (`/wp add` usw.), aber die Autovervollständigung kennt ihn nicht. Das gilt für ALLE native Mods (fps, minimap, zoom, etc.).
+The existing GitHub release `v0.1.0` must remain immutable. Changes to the bundle
+need a new version and a new release asset. The project already has a minisign
+public key; its private key is not available in this environment, so an updated
+release cannot be signed here. Do not reuse the old `.minisig` for a changed
+bundle.
 
-**Q: Warum sind Wegpunkte unsichtbar wenn Chat offen?**
-A: `native_hud` wird von `draw_extras` aufgerufen — wenn Chat offen ist, zeichnet das Spiel den HUD nicht. Das ist Horizon-Verhalten, nicht ein Fehler der Mod.
-
-**Q: Kann ich ein echtes Inventar/Fullscreen-Menü erstellen?**
-A: Nein. Native Mods können nur HUD-Overlays (`corners.place`) zeichnen. Kein `Screen`-Enum-Extension, kein Inventar-Access, kein echtes Fullscreen-UI.
-
-**Q: Wie verwalte ich Wegpunkte?**
-A: `N` = hinzufügen, `B` = Liste unten links, `M` = Edit-Panel (HUD), `/wp edit <Name>` = Info, Settings-Button = Toggle.
-
-**Q: Wie geht es ins offizielle Repo?**
-A: Fork `horizon-rust/horizon-mixins`, `mixins/waymap/` + tests + README + PR. 2 kleine Fehler fixen (`atlas`, `edit_panel`).
-
-## Dateien im Publish-Ordner
-- `README.md` — Alles zur Mod (Features, Installation, Limits)
-- `RELEASE_CHECKLIST.md` — Was noch fehlt für Repo-Veröffentlichung
-- `build/` — Build-Artefakte (nicht für Repo, nur lokal)
-- `waymap.hnmod` — Fertiges Paket (bereit zur Installation)
+Version `0.1.1` has been built and checked against Horizon revision
+`c9d474dd9116e84c243f8992d75c11314df56f06`. The bundle is
+`waymap-0.1.1.hnmod` (SHA-256
+`9212f8acd583b32dfbfdb80e083729aa74e7750045272bc0f8d308eba014b83a`).
+It is not ready to submit until it is signed with the existing private key and
+the signature is added to the registry entry.

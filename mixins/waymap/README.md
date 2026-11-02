@@ -1,14 +1,16 @@
 # Waymap (Native Mod)
 
 Native `.hnmod` bundle for Horizon.
-- ID: `waymap`
-- Version: `0.1.0`
-- Pins: horizon `d009ebd140476b5bdc958c00f56a75e82abec691`, mixins `0d6b103c70633d8fd9443d8d0acd3aadaacedb06`
-- Hooks: `2` (`native_frame`, `native_hud`, `native_key`, `native_command`, `native_mods`, `native_settings`)
-- Source: https://github.com/horizon-rust/horizon-mixins (fork + PR for `mixins/waymap/`)
-- License: MIT (workspace)
 
-## Limits (documented, architecture-level)
-- Chat open → HUD markers hidden (`draw_extras` stops)
-- `/wp` commands work but have no Chat tab-completion
-- No fullscreen / inventory GUI (only HUD overlay)
+- ID: `waymap`
+- Version: `0.1.1`
+- Horizon tested revision: `c9d474dd9116e84c243f8992d75c11314df56f06`
+- Minimum Native Hooks API: `35` (`native_commands` registers `/wp`)
+- horizon-mixins revision: `0d6b103c70633d8fd9443d8d0acd3aadaacedb06`
+- License: MIT
+
+The bundle uses native hooks for frame updates, mod settings, commands, keys and
+HUD rendering. The minimap view and drawing are patched through internal Horizon
+functions, so the exact tested Horizon revision remains pinned.
+
+See the project README for build instructions and the documented HUD/chat limits.

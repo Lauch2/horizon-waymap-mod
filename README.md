@@ -19,19 +19,19 @@ Waymap adds world markers, minimap dots, a waypoint list and an edit panel — a
 | Attribute | Value |
 |---|---|
 | Mod ID | `waymap` |
-| Version | `0.1.0` |
+| Version | `0.1.1` |
 | File | `waymap-0.1.0.hnmod` |
-| Horizon revision | `d009ebd140476b5bdc958c00f56a75e82abec691` |
+| Horizon revision | `c9d474dd9116e84c243f8992d75c11314df56f06` |
 | Mixins revision | `0d6b103c70633d8fd9443d8d0acd3aadaacedb06` |
-| Schema / hooks | `1` / `2` |
-| Injections | 9 HEAD + 2 modules (`waymap` in `game.rs`, `waymap_minimap` in `extras_hud.rs`) |
+| Schema / hooks | `1` / `35` |
+| Injections | 10 HEAD + 2 modules (`waymap` in `game.rs`, `waymap_minimap` in `extras_hud.rs`) |
 | Bundle size | 13 entries, ~40 KB |
 
 ## Installation
 
-1. Copy `waymap-0.1.0.hnmod` to `horizon-native-mods/`.
-2. Add `mod.waymap:true` to `horizon-mods.txt`.
-3. Launcher → Build (first build takes 10–30 min).
+After the registry listing is approved, install Waymap from the launcher's Mods
+page and build the instance there. Native mods run with the player's account
+permissions; install only mods from authors you trust.
 
 ## Usage
 
@@ -45,26 +45,27 @@ Waymap adds world markers, minimap dots, a waypoint list and an edit panel — a
 ## Development
 
 ```bash
-./check.sh     # Apply mixins to a pristine Horizon tree + cargo check (stage/target under build/)
-./package.sh   # Rebuild waymap-0.1.0.hnmod (zip -qrD, no directory entries)
+./check.sh unit  # Format, lint, unit tests, and package
+HORIZON_MODS_REPO=/path/to/horizon-mods ./check.sh full
+./package.sh     # Rebuild the .hnmod bundle
 ```
 
 Layout:
 
 ```
 mixins/waymap/            # Source: horizon-mixin.toml + Rust helpers
-fixtures/native-mods/     # Test fixtures (minimal horizon-mixin.toml + data)
+compatibility.json        # Tested Horizon and Mixins revisions, minimum hooks API
+unit_tests.rs             # Unit-test entry point for bundle helpers
 publish/                  # Release docs, checklist, registry entry draft
-waymap-0.1.0.hnmod        # Ready-to-install bundle
+waymap-0.1.0.hnmod        # Release bundle
 ```
 
 ## Known limitations (Horizon architecture, not bugs)
 
-- **No fullscreen / inventory UI** — native mods can only draw HUD overlays (`native_hud`); the `Screen` enum cannot be extended.
-- **No tab completion for `/wp`** — native commands are not registered in the chat dispatcher; they still work.
-- **Markers hidden while chat is open** — `draw_extras` stops drawing the HUD when `Screen::Chat` is active.
-- **Panel closure** — `draw_extras` has a closure, so `AFTER_ASSIGN`/`OVERWRITE` injections fail; the edit panel uses a cancellable head on `draw_minimap` instead.
+- **HUD-based edit panel** — the mod uses an overlay rather than a dedicated native screen.
+- **Exact Horizon pin** — the minimap view/draw injections use internal Horizon functions, so the bundle is built only against its tested revision.
+- **Chat overlay** — markers and minimap dots may be covered while chat is open.
 
 ## License
 
-MIT — see the `horizon-mixins` workspace.
+MIT — see [LICENSE](./LICENSE).

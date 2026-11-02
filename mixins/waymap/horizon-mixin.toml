@@ -1,13 +1,12 @@
 [mod]
 id = "waymap"
-version = "0.1.0"
+version = "0.1.1"
 priority = 100
 
-# Pinned to the commit of the current native build (and server_lod). The mod
-# reads the camera, the minimap's view and the HUD atlas, so it builds on this
-# exact commit only.
+# The minimap view and draw hooks below are internal Horizon functions, so the
+# bundle is pinned to the exact commit it was tested on.
 [compatibility]
-horizon_revision = "d009ebd140476b5bdc958c00f56a75e82abec691"
+horizon_revision = "c9d474dd9116e84c243f8992d75c11314df56f06"
 
 # The mod's state, waypoints, projection and HUD code (`game::waymap`).
 [[module]]
@@ -83,6 +82,16 @@ bindings = [
   { name = "ran", ty = "&mut bool", value = "&mut *ran" },
 ]
 
+# Register /wp with Horizon's native command dispatcher.
+[[injection]]
+id = "commands"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_commands"
+helper = "commands.rs"
+bindings = [
+  { name = "commands", ty = "&mut Vec<&'static str>", value = "&mut *commands" },
+]
+
 # Keys: add a waypoint, toggle the list panel.
 [[injection]]
 id = "key"
@@ -135,9 +144,3 @@ bindings = [
   { name = "corners", ty = "&mut crate::extras_hud::Corners", value = "&mut *corners" },
   { name = "look", ty = "&crate::extras_hud::MinimapLook", value = "look" },
 ]
-
-
-
-
-
-
