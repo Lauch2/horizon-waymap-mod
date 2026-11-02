@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Horizon%20Mod-Waymap-blue?style=for-the-badge&logo=minecraft&logoColor=white" alt="Waymap Mod">
-  <img src="https://img.shields.io/badge/Version-0.1.2-green?style=for-the-badge" alt="Version 0.1.2">
+  <img src="https://img.shields.io/badge/Version-0.1.3-green?style=for-the-badge" alt="Version 0.1.3">
   <img src="https://img.shields.io/badge/Horizon-d009ebd-blue?style=for-the-badge" alt="Horizon Revision">
   <img src="https://img.shields.io/badge/Mixins-0d6b103-orange?style=for-the-badge" alt="Mixins Revision">
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT License">
@@ -69,11 +69,11 @@
 
 ### Quick Install
 
-1. **Download** the latest `waymap-0.1.2.hnmod` from the [Releases page](https://github.com/Lauch2/horizon-waymap-mod/releases/tag/v0.1.2)
+1. **Download** the latest `waymap-0.1.3.hnmod` from the [Releases page](https://github.com/Lauch2/horizon-waymap-mod/releases/tag/v0.1.3)
 2. **Copy** the file to your Horizon native mods directory:
    ```bash
    # Linux
-   cp waymap-0.1.2.hnmod ~/.local/share/horizon/horizon-native-mods/
+   cp waymap-0.1.3.hnmod ~/.local/share/horizon/horizon-native-mods/
    ```
 3. **Enable** the mod in `~/.local/share/horizon/horizon-mods.txt`:
    ```ini
@@ -148,7 +148,7 @@ Waypoints are stored **per context** in `~/.local/share/horizon/horizon-mods/.ho
 | Legacy | `waypoints.txt` | Auto-migrated on first run |
 
 ### Migration
-On first run with v0.1.2+, legacy `waypoints.txt` is automatically migrated to a `world_legacy.txt` file. The original is backed up as `waypoints.txt.legacy_backup`.
+On first run with v0.1.3+, legacy `waypoints.txt` is automatically migrated to a `world_legacy.txt` file. The original is backed up as `waypoints.txt.legacy_backup`.
 
 ### Atomic Writes
 All file writes use **atomic operations** (write to `.tmp`, then atomic rename) — safe against crashes and power loss.
@@ -240,7 +240,7 @@ HORIZON_MODS_REPO=/path/to/horizon-mods ./check.sh full
 ### Versioning
 | Version | Date | Changes |
 |---------|------|---------|
-| `0.1.2` | 2026-11-02 | English only, removed HUD overlay, fixed context separation, atomic saves |
+| `0.1.3` | 2026-11-02 | English only, removed HUD overlay, fixed context separation, atomic saves |
 | `0.1.1` | 2026-11-01 | Added `/wp` commands |
 | `0.1.0` | 2026-11-01 | Initial release |
 
