@@ -69,7 +69,7 @@
 
 ### Quick Install
 
-1. **Download** the latest `waymap-0.1.3.hnmod` from the [Releases page](https://github.com/Lauch2/horizon-waymap-mod/releases/tag/v0.1.3)
+1. **Download** the latest `waymap-0.1.4.hnmod` from the [Releases page](https://github.com/Lauch2/horizon-waymap-mod/releases/tag/v0.1.4)
 2. **Copy** the file to your Horizon native mods directory:
    ```bash
    # Linux
