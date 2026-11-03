@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Horizon%20Mod-Waymap-blue?style=for-the-badge&logo=minecraft&logoColor=white" alt="Waymap Mod">
-  <img src="https://img.shields.io/badge/Version-0.1.3-green?style=for-the-badge" alt="Version 0.1.3">
+  <img src="https://img.shields.io/badge/Version-0.1.4-green?style=for-the-badge" alt="Version 0.1.4">
   <img src="https://img.shields.io/badge/Horizon-d009ebd-blue?style=for-the-badge" alt="Horizon Revision">
   <img src="https://img.shields.io/badge/Mixins-0d6b103-orange?style=for-the-badge" alt="Mixins Revision">
   <img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="MIT License">
