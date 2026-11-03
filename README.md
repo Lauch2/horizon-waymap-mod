@@ -73,7 +73,7 @@
 2. **Copy** the file to your Horizon native mods directory:
    ```bash
    # Linux
-   cp waymap-0.1.3.hnmod ~/.local/share/horizon/horizon-native-mods/
+   cp waymap-0.1.4.hnmod ~/.local/share/horizon/horizon-native-mods/
    ```
 3. **Enable** the mod in `~/.local/share/horizon/horizon-mods.txt`:
    ```ini
