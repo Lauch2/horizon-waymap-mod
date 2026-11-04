@@ -15,8 +15,8 @@ const SIZE: f32 = 128.0;
 thread_local! {
     /// The view the minimap was composed from this frame.
     static VIEW: RefCell<Option<crate::minimap::View>> = const { RefCell::new(None) };
-    /// This frame's waypoints in the shown dimension: `([x, z], 0xRRGGBB)`.
-    static DOTS: RefCell<Vec<([f64; 2], u32)>> = const { RefCell::new(Vec::new()) };
+    /// This frame's waypoints in the shown dimension: `([x, z], 0xRRGGBB, death)`.
+    static DOTS: RefCell<Vec<([f64; 2], u32, bool)>> = const { RefCell::new(Vec::new()) };
 }
 
 /// Keeps what `Game::minimap_shown` returned for the dots.
@@ -25,7 +25,7 @@ pub fn set_view(map: Option<(crate::extras::Corner, f32, crate::minimap::View)>)
 }
 
 /// Keeps this frame's waypoints, for the map the player sees.
-pub fn set_dots(dots: Vec<([f64; 2], u32)>) {
+pub fn set_dots(dots: Vec<([f64; 2], u32, bool)>) {
     DOTS.with_borrow_mut(|slot| *slot = dots);
 }
 
@@ -97,23 +97,55 @@ fn draw_dots(batch: &mut HudBatch, atlas: &HudAtlas, at: [f32; 3]) {
         return;
     }
     DOTS.with_borrow(|dots| {
-        for &([wx, wz], color) in dots {
+        for &([wx, wz], color, death) in dots {
             let d0 = (wx - view.x) / bpp;
             let d1 = (wz - view.z) / bpp;
             let u = (-d0 * f[1] + f[0] * d1) / det;
             let v = (r[0] * d1 - r[1] * d0) / det;
             let x = (cx + u as f32 * scale).clamp(at[0] + 2.0, at[0] + size - 2.0);
             let y = (cy + v as f32 * scale).clamp(at[1] + 2.0, at[1] + size - 2.0);
-            let [_, red, green, blue] = color.to_be_bytes();
-            batch.fill(atlas, x - 2.5, y - 2.5, 5.0, 5.0, rgba(0, 0, 0, 150));
-            batch.fill(
-                atlas,
-                x - 1.5,
-                y - 1.5,
-                3.0,
-                3.0,
-                rgba(red, green, blue, 255),
-            );
+            if death {
+                // A death waypoint is a red X, matching the world marker.
+                const RED: u32 = 0xFF_5555;
+                let [_, red, green, blue] = RED.to_be_bytes();
+                for (half, colour) in [
+                    (4.0, rgba(0, 0, 0, 150)),
+                    (3.0, rgba(red, green, blue, 255)),
+                ] {
+                    let t = half * 0.45;
+                    batch.fill_quad(
+                        atlas,
+                        [
+                            [x - half + t, y - half - t],
+                            [x + half + t, y + half - t],
+                            [x + half - t, y + half + t],
+                            [x - half - t, y - half + t],
+                        ],
+                        colour,
+                    );
+                    batch.fill_quad(
+                        atlas,
+                        [
+                            [x + half + t, y - half + t],
+                            [x - half + t, y + half + t],
+                            [x - half - t, y + half - t],
+                            [x + half - t, y - half - t],
+                        ],
+                        colour,
+                    );
+                }
+            } else {
+                let [_, red, green, blue] = color.to_be_bytes();
+                batch.fill(atlas, x - 2.5, y - 2.5, 5.0, 5.0, rgba(0, 0, 0, 150));
+                batch.fill(
+                    atlas,
+                    x - 1.5,
+                    y - 1.5,
+                    3.0,
+                    3.0,
+                    rgba(red, green, blue, 255),
+                );
+            }
         }
     });
 }

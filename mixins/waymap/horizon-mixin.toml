@@ -1,12 +1,12 @@
 [mod]
 id = "waymap"
-version = "0.1.3"
+version = "0.2.0"
 priority = 100
 
 # The minimap view and draw hooks below are internal Horizon functions, so the
 # bundle is pinned to the exact commit it was tested on.
 [compatibility]
-horizon_revision = "d009ebd140476b5bdc958c00f56a75e82abec691"
+horizon_revision = "c9d474dd9116e84c243f8992d75c11314df56f06"
 
 # The mod's state, waypoints, projection and HUD code (`game::waymap`).
 [[module]]
@@ -133,4 +133,77 @@ bindings = [
   { name = "atlas", ty = "&crate::hud::HudAtlas", value = "atlas" },
   { name = "corners", ty = "&mut crate::extras_hud::Corners", value = "&mut *corners" },
   { name = "look", ty = "&crate::extras_hud::MinimapLook", value = "look" },
+]
+
+# The screen render post (native_screen_render_post).
+[[injection]]
+id = "screen_render"
+kind = "HEAD"
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_render_post"
+helper = "screen.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "batch", ty = "&mut horizon_client::hud::HudBatch", value = "batch" },
+  { name = "screen", ty = "&crate::game::native_hooks::NativeScreenView<'_>", value = "screen" },
+]
+
+# The screen mouse button pressed (native_screen_mouse_button_pressed_pre).
+[[injection]]
+id = "screen_mouse"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_button_pressed_pre"
+helper = "mouse.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&crate::game::native_hooks::NativeScreenView<'_>", value = "screen" },
+  { name = "button", ty = "i32", value = "button" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "canceled" },
+]
+
+# The screen mouse scrolled (native_screen_mouse_scrolled_pre).
+[[injection]]
+id = "screen_scroll"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_mouse_scrolled_pre"
+helper = "scroll.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&crate::game::native_hooks::NativeScreenView<'_>", value = "screen" },
+  { name = "scroll", ty = "[f64; 2]", value = "scroll" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "canceled" },
+]
+
+# The screen key pressed (native_screen_key_pressed_pre).
+[[injection]]
+id = "screen_key"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_key_pressed_pre"
+helper = "keys.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&crate::game::native_hooks::NativeScreenView<'_>", value = "screen" },
+  { name = "key", ty = "&str", value = "key" },
+  { name = "repeat", ty = "bool", value = "repeat" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "canceled" },
+]
+
+# The screen char typed (native_screen_char_typed_pre).
+[[injection]]
+id = "screen_char"
+kind = "HEAD"
+cancellable = true
+target = "horizon_client::game::native_hooks::Game<'_>::native_screen_char_typed_pre"
+helper = "chars.rs"
+bindings = [
+  { name = "game", ty = "&crate::game::Game<'_>", value = "&*self" },
+  { name = "screen", ty = "&crate::game::native_hooks::NativeScreenView<'_>", value = "screen" },
+  { name = "c", ty = "char", value = "c" },
+  { name = "modifiers", ty = "u32", value = "modifiers" },
+  { name = "canceled", ty = "&mut bool", value = "canceled" },
 ]
