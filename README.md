@@ -1,4 +1,4 @@
-# Waymap 0.2.0
+# Waymap 0.2.1
 
 Waymap is a native, client-side Horizon mod for persistent waypoints. Waypoints
 appear as 3D markers in the world and as coloured dots on the minimap, with an
@@ -7,7 +7,7 @@ every death automatically records a waypoint at the death spot.
 
 - Horizon: `6475f62f3c834b7489e1816bf47f47ea5eb2b879`
 - horizon-mixins: `0d6b103c70633d8fd9443d8d0acd3aadaacedb06`
-- Package version: `0.2.0`
+- Package version: `0.2.1`
 
 ## Features
 

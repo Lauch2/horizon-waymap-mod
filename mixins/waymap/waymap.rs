@@ -33,7 +33,7 @@ use std::path::{Path, PathBuf};
 /// The mod's id: its folder, its settings files and its keys.
 pub(super) const MOD_ID: &str = "waymap";
 const NAME: &str = "Waymap";
-const VERSION: &str = "0.2.0";
+const VERSION: &str = "0.2.1";
 const DESCRIPTION: &str = "Waypoints in the world and on the minimap. N creates one, B or M lists them.";
 /// Maximum waypoints per context; more would only clutter the map.
 const MAX_WAYPOINTS: usize = 512;
