@@ -5,7 +5,7 @@ appear as 3D markers in the world and as coloured dots on the minimap, with an
 optional list panel. A native screen provides a list/editor and a Deaths tab;
 every death automatically records a waypoint at the death spot.
 
-- Horizon: `c9d474dd9116e84c243f8992d75c11314df56f06`
+- Horizon: `6475f62f3c834b7489e1816bf47f47ea5eb2b879`
 - horizon-mixins: `0d6b103c70633d8fd9443d8d0acd3aadaacedb06`
 - Package version: `0.2.0`
 
@@ -32,7 +32,7 @@ every death automatically records a waypoint at the death spot.
 3. In the Horizon Launcher, choose an instance built from the pinned Horizon
    revision, build it, and start the game.
 
-Waymap is pinned to Horizon `c9d474dd9116e84c243f8992d75c11314df56f06`.
+Waymap is pinned to Horizon `6475f62f3c834b7489e1816bf47f47ea5eb2b879`.
 Other Horizon revisions are not claimed to work.
 
 ## Controls

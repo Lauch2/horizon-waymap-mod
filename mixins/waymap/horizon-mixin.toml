@@ -6,7 +6,7 @@ priority = 100
 # The minimap view and draw hooks below are internal Horizon functions, so the
 # bundle is pinned to the exact commit it was tested on.
 [compatibility]
-horizon_revision = "c9d474dd9116e84c243f8992d75c11314df56f06"
+horizon_revision = "6475f62f3c834b7489e1816bf47f47ea5eb2b879"
 
 # The mod's state, waypoints, projection and HUD code (`game::waymap`).
 [[module]]
@@ -126,7 +126,7 @@ bindings = [
 id = "minimap"
 kind = "HEAD"
 cancellable = true
-target = "horizon_client::extras_hud::draw_minimap"
+target = "horizon_client_lib::extras_hud::draw_minimap"
 helper = "minimap.rs"
 bindings = [
   { name = "batch", ty = "&mut crate::hud::HudBatch", value = "&mut *batch" },
